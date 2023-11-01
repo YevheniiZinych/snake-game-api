@@ -22,6 +22,8 @@ pool.connect().then((client) => {
     })
     .catch((e) => {
       client.release();
+
       console.error("query error", e.message, e.stack);
+      process.exit(1);
     });
 });
