@@ -1,9 +1,10 @@
 const Router = require("express");
 const router = new Router();
 const personController = require("../controller/person.controller");
+const ctrlWrapper = require("../helpers/ctrlWrapper");
 
-router.post("/players", personController.createPerson);
-router.get("/players", personController.getPersons);
-router.delete("/players/:id", personController.deletePerson);
+router.post("/players", ctrlWrapper(personController.createPerson));
+router.get("/players", ctrlWrapper(personController.getPersons));
+router.delete("/players/:id", ctrlWrapper(personController.deletePerson));
 
 module.exports = router;
