@@ -3,8 +3,11 @@ const db = require("../db");
 class PersonController {
   async createPerson(req, res) {
     const { name, point } = req.body;
-    try {
-    } catch (error) {}
+    const newPerson = await db.query(
+      "INSERT INTO players (name, point) values ($1, $2) RETURNING *",
+      [name, point]
+    );
+    res.status(200).json(newPerson.rows[0]);
   }
 
   async getPersons(req, res) {
