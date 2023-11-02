@@ -9,6 +9,14 @@ const app = express();
 app.use(express.json());
 app.use("/api", personRouter);
 
-app.listen(PORT, () => {
-  console.log(`server started on port ${PORT}`);
-});
+pool
+  .connect()
+  .then(() => {
+    console.log("Підключено до бази даних PostgreSQL");
+    app.listen(PORT, () => {
+      console.log(`server started on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Помилка підключення до бази даних:", error);
+  });
