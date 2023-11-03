@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.2",
+    "title": "Snake-game-api",
+    "description": "Base URL https://snake-point-data-api.onrender.com"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "https://snake-point-data-api.onrender.com" }],
+  "tags": [
+    {
+      "name": "Players",
+      "description": "Players endpoints"
+    }
+  ],
+  "paths": {
+    "/api/players": {
+      "get": {
+        "tags": ["Players"],
+        "summary": "Get all players",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllPlayersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/players/create": {
+      "post": {
+        "tags": ["Players"],
+        "summary": "Add new player",
+        "parameters": [],
+        "requestBody": {
+          "description": "User object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewUserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AllPlayersResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "User ID",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "description": "User name",
+              "example": "Ivo Bobul"
+            },
+            "point": {
+              "type": "number",
+              "description": "User score",
+              "example": 100
+            }
+          }
+        }
+      },
+      "AddNewUserRequest": {
+        "type": "object",
+        "required": ["name", "point"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Ivo Bobul"
+          },
+          "point": {
+            "type": "number",
+            "description": "User score",
+            "example": 100
+          }
+        }
+      },
+      "AddNewUserResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "User ID",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "description": "User name",
+              "example": "Ivo Bobul"
+            },
+            "point": {
+              "type": "number",
+              "description": "User score",
+              "example": 100
+            }
+          }
+        }
+      }
+    }
+  }
+}
