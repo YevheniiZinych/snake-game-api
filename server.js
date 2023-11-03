@@ -27,7 +27,7 @@ pool
   .then(() => {
     console.log("Підключено до бази даних PostgreSQL");
     app.listen(PORT, () => {
-      console.log(`server started on port ${PORT}`);
+      console.log(`local server started on port ${PORT}`);
     });
   })
   .catch((error) => {
